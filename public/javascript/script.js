@@ -33,13 +33,13 @@ document.addEventListener("DOMContentLoaded", function() {
         const message = messageInput.value.trim();
 
         if (message) {
-
             const messageObject = {
                 username: storedUsername,
                 content: message,
             };
 
             socket.emit("userMessage", messageObject);
+
             socket.emit("typingEnded", storedUsername);
 
             displayMessage(`${storedUsername}: ${message}`);
@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
             saveMessageToDatabase(messageObject);
         }
     }
+
 
     function saveMessageToDatabase(messageObject) {
         fetch('/chat/save-message', {

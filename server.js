@@ -31,15 +31,15 @@ io.on('connection', (socket) => {
     io.emit('connected', notification);
 
     socket.on('userMessage', (message) => {
-        io.emit('userMessage', message);
+        socket.broadcast.emit('userMessage', message);
     });
 
     socket.on('typingStarted', (username) => {
-        io.emit('typingStarted', username);
+        socket.broadcast.emit('typingStarted', username);
     });
 
     socket.on('typingEnded', (username) => {
-        io.emit('typingEnded', username);
+        socket.broadcast.emit('typingEnded', username);
     });
 
     socket.on('disconnect', () => {
